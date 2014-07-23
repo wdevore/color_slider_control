@@ -1,6 +1,6 @@
-# Dart Color Picker
+# Dart Color Slider Selector
 
-The Color Picker control creates a Adobe Photoshop style [HSV](http://en.wikipedia.org/wiki/HSL_and_HSV) color picker where the RGB values can be picked based on the Hue, Saturation and Value parameters.
+This control creates a simple color selector where the RGB values can be selected by sliding markers.
 
 ![Color Picker](https://raw.github.com/coderespawn/dart-color-picker/master/doc/images/color_picker_large.png)
 
