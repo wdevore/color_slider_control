@@ -4,7 +4,8 @@ This control creates a simple color selector where the RGB values can be selecte
 
 ![Color Selector](https://raw.githubusercontent.com/wdevore/gradient_colorstops_control/master/gradient_selector.png)
 
-Start by adding a dependency of the Color Selector [library](https://github.com/wdevore/color_slider_control) in pubspec.yaml
+##pubspec
+Start by adding a dependency for the Color Selector [library](https://github.com/wdevore/color_slider_control) in pubspec.yaml
 ```yaml
     dependencies:
       color_slider_control:
@@ -28,3 +29,7 @@ Create the color selector by instantiating the `ColorSliderWidget` object, then 
 ```
 
 The selector defaults to a light teal color.
+
+##Design
+The active `marker` is highlighted as darkgreen. Unselected `marker`s are blurred, grayscaled and translucent. The end `marker`s are highlighted in darkred and not movable.
+
