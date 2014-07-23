@@ -1,6 +1,6 @@
 # Dart Color Slider Selector
 
-This control creates a simple color selector where the RGB values can be selected by sliding markers.
+This control creates a simple color selector where the RGB values can be selected by sliding markers. It is designed purely in CSS/SVG/Dart; there is no Canvas rendering occurring.
 
 ![Color Selector](https://raw.githubusercontent.com/wdevore/gradient_colorstops_control/master/gradient_selector.png)
 
