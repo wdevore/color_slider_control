@@ -23,7 +23,7 @@ However, there is a limit to how much you can change style properties.
 .slider_color_container {
   position: relative;
   top: 0px;
-  left: 0px;
+  left: 10px;
   width: 100%;
   height: 76px;
   /*background-color: #ffeeee;*/

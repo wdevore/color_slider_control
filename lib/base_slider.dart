@@ -129,12 +129,13 @@ abstract class BaseSlider {
   
   void mouseDown(int x) {
     _posX = _prevX = x;
+    print("down: $x");
     _update(selectedStop.icon.offsetLeft + iconCenter, 0);
   }
   
   void mouseMove(int x) {
     int dx = x - _prevX;
-    
+    print("move: x:$x, dx:$dx");
     int lpX = selectedStop.icon.offsetLeft;
     int pX = lpX;
     pX += dx;

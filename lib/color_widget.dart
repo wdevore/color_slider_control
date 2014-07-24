@@ -111,6 +111,11 @@ class ColorSliderWidget {
     _darknessSlider.backgroundStyle = "linear-gradient(to right, ${colorBoxValue.toString()}, #000000)";
   }
   
+  int getXOffset(MouseEvent e) {
+    //print("getX: offset:${e.offset}, client:${e.client}");
+    return e.client.x;// + _colorSlider.iconCenter * 2;
+  }
+
   void _mouseDown(MouseEvent e) {
     _down = true;
     if (e.target == _colorSlider.markerIcon)
@@ -121,14 +126,14 @@ class ColorSliderWidget {
       target = _darknessSlider;
 
     if (target != null) {
-      target.mouseDown(e.client);
+      target.mouseDown(getXOffset(e));
       e.preventDefault();
     }
   }
 
   void _mouseMove(MouseEvent e) {
     if (_down && target != null) {
-      target.mouseMove(e.client);
+      target.mouseMove(getXOffset(e));
       e.preventDefault();
     }
   }
