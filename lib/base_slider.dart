@@ -127,13 +127,13 @@ abstract class BaseSlider {
     // Update CSS gradient to match Stops.
   }
   
-  void mouseDown(Point p) {
-    _posX = _prevX = p.x;
+  void mouseDown(int x) {
+    _posX = _prevX = x;
     _update(selectedStop.icon.offsetLeft + iconCenter, 0);
   }
   
-  void mouseMove(Point p) {
-    int dx = p.x - _prevX;
+  void mouseMove(int x) {
+    int dx = x - _prevX;
     
     int lpX = selectedStop.icon.offsetLeft;
     int pX = lpX;
@@ -147,7 +147,7 @@ abstract class BaseSlider {
     
     selectedStop.icon.style.left = (pX).toString() + "px";
     
-    _prevX = p.x;
+    _prevX = x;
     _update(pX + iconCenter, 0);
   }
   
