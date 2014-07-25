@@ -46,7 +46,7 @@ abstract class BaseSlider {
     if (toTop)
       setTop();
     else
-      setToBottom();
+      setToBottom(gradientElement.offsetHeight + iconWidth);
     
     title = "Drag marker.";
   }
@@ -72,14 +72,18 @@ abstract class BaseSlider {
     selectedStop.icon.style.top = (-gradientElement.offsetHeight + iconWidth ~/ 2).toString() + "px";
   }
   
-  void setToBottom() {
-    selectedStop.icon.style.top = (gradientElement.offsetHeight + iconWidth).toString() + "px";
+  void setToBottom(int verticalOffset) {
+//    selectedStop.icon.style.top = (gradientElement.offsetHeight + iconWidth).toString() + "px";
+    selectedStop.icon.style.top = verticalOffset.toString() + "px";
   }
   
   set title(String t) => selectedStop.icon.title = t;
   set barTitle(String t) => gradientElement.title = t;
 
   ImageElement get markerIcon => selectedStop.icon;
+  int get leftOffset => gradientElement.offsetLeft;
+  int get width => gradientElement.clientWidth;
+  int get offsetWidth => gradientElement.offsetWidth;
   
   ImageElement addMarker(ColorData cd, String base64Resource) {
     ImageElement icon = _loadIcon("data:image/svg+xml;base64," + base64Resource, iconWidth, iconWidth);
@@ -94,7 +98,7 @@ abstract class BaseSlider {
     ImageElement icon = addMarker(cd, base64Resource);
     container.nodes.add(icon);
     
-    setToBottom();
+    setToBottom(iconWidth + (iconWidth ~/ 4));
     
     orientMarker(markerClass);
 
@@ -129,13 +133,13 @@ abstract class BaseSlider {
   
   void mouseDown(int x) {
     _posX = _prevX = x;
-    print("down: $x");
+    //print("down: $x");
     _update(selectedStop.icon.offsetLeft + iconCenter, 0);
   }
   
   void mouseMove(int x) {
     int dx = x - _prevX;
-    print("move: x:$x, dx:$dx");
+    //print("move: x:$x, dx:$dx");
     int lpX = selectedStop.icon.offsetLeft;
     int pX = lpX;
     pX += dx;
