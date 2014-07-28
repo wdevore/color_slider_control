@@ -33,13 +33,13 @@ class ColorSliderWidget {
   
   // Three main control colors.
   ColorValue color;
-  double colorLocation = 0.5;
+  double _colorLocation = 0.5;
   
   ColorValue bright;
-  double brightLocation = 0.5;
+  double _brightLocation = 0.0;
   
   ColorValue dark;
-  double darkLocation = 0.5;
+  double _darkLocation = 0.0;
   
   // Color box
   ColorValue colorBoxValue = new ColorValue();
@@ -106,11 +106,21 @@ class ColorSliderWidget {
     _darknessSlider.setDefaultAttributes(cd, "slider_marker_on_top", true);
     _darknessSlider.bind(_darknessChanged);
     
-    _colorSlider.location = 0.5;
-    _brightnessSlider.location = 0.0;
-    _darknessSlider.location = 0.0;
+    colorLocation = _colorLocation;
+    brightLocation = _brightLocation;
+    darknessLocation = _darkLocation;
 
     _darknessSlider.backgroundStyle = "linear-gradient(to right, ${colorBoxValue.toString()}, #000000)";
+  }
+  
+  set colorLocation(double v) {
+    _colorSlider.location = _colorLocation = v;
+  }
+  set brightLocation(double v) { 
+    _brightnessSlider.location = _brightLocation = v;
+  }
+  set darknessLocation(double v) {
+    _darknessSlider.location = _darkLocation = v;
   }
   
   int getXOffset(MouseEvent e) {
@@ -153,8 +163,8 @@ class ColorSliderWidget {
     
     // An external control is telling us to switch to a new color configuration.
     color = stop.color;
-    colorLocation = stop.colorLocation;
-    _colorSlider.location = colorLocation;
+    _colorLocation = stop.colorLocation;
+    _colorSlider.location = _colorLocation;
     
     GradientValue gradient = _colorSlider.gradient;
     
@@ -178,7 +188,7 @@ class ColorSliderWidget {
   // means the color, brightness and darkness sliders.
   void _colorChanged(ColorData stop) {
     color = stop.color;
-    colorLocation = stop.colorLocation;
+    _colorLocation = stop.colorLocation;
     
     _brightnessSlider.backgroundStyle = "linear-gradient(to right, ${color.toString()}, #ffffff)";
     
@@ -190,7 +200,7 @@ class ColorSliderWidget {
 
   void _brightnessChanged(ColorData stop) {
     bright = stop.whiteness;
-    brightLocation = stop.colorLocation;
+    _brightLocation = stop.colorLocation;
     
     _calcBright(colorValue);
     _darknessSlider.backgroundStyle = "linear-gradient(to right, ${colorValue.toString()}, #000000)";
@@ -200,13 +210,13 @@ class ColorSliderWidget {
   
   void _darknessChanged(ColorData stop) {
     dark = stop.darkness;
-    darkLocation = stop.colorLocation;
+    _darkLocation = stop.colorLocation;
     _update();
   }
   
   ColorData get currentColorData {
     ColorData stop = new ColorData();
-    stop.colorLocation = colorLocation;
+    stop.colorLocation = _colorLocation;
     stop.displayColor = colorBoxValue;
     stop.color = color;
     stop.whiteness = bright;
@@ -221,7 +231,7 @@ class ColorSliderWidget {
     
     if (_colorChangeCallback != null && _transmit) {
       ColorData stop = new ColorData();
-      stop.colorLocation = colorLocation;
+      stop.colorLocation = _colorLocation;
       stop.displayColor = colorBoxValue;
       stop.color = color;
       stop.whiteness = bright;
@@ -246,9 +256,9 @@ class ColorSliderWidget {
       b = min(255, b + bright.b);
       
       // Flip darklocation because we want the "left" end to be brighter.
-      r = (r * (1.0 - darkLocation)).toInt();
-      g = (g * (1.0 - darkLocation)).toInt();
-      b = (b * (1.0 - darkLocation)).toInt();
+      r = (r * (1.0 - _darkLocation)).toInt();
+      g = (g * (1.0 - _darkLocation)).toInt();
+      b = (b * (1.0 - _darkLocation)).toInt();
       
       colorValue.set(r, g, b);
       
