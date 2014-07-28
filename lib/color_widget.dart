@@ -45,6 +45,8 @@ class ColorSliderWidget {
   ColorValue colorBoxValue = new ColorValue();
   ColorValue colorValue = new ColorValue();
   
+  ColorData externalStop;
+  
   bool _down = false;
   BaseSlider target;
   
@@ -147,6 +149,7 @@ class ColorSliderWidget {
   // Called by either an external control (aka gradient_colorstops_control)
   void externalColorChange(ColorData stop) {
     _transmit = false;
+    externalStop = stop;
     
     // An external control is telling us to switch to a new color configuration.
     color = stop.color;
@@ -223,6 +226,7 @@ class ColorSliderWidget {
       stop.color = color;
       stop.whiteness = bright;
       stop.darkness = dark;
+      stop.gradientlocation = externalStop.gradientlocation;
       _colorChangeCallback(stop);
     }
   }
