@@ -226,7 +226,8 @@ class ColorSliderWidget {
       stop.color = color;
       stop.whiteness = bright;
       stop.darkness = dark;
-      stop.gradientlocation = externalStop.gradientlocation;
+      if (externalStop != null)
+        stop.gradientlocation = externalStop.gradientlocation;
       _colorChangeCallback(stop);
     }
   }
