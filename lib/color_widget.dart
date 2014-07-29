@@ -93,6 +93,12 @@ class ColorSliderWidget {
 
   }
 
+  void buildGradient(List<ColorData> colors) {
+    List<ColorValue> cvs = new List<ColorValue>();
+    colors.forEach((ColorData cd) => cvs.add(cd.color));
+    _colorSlider.buildGradient(cvs);
+  }
+  
   void bind() {
     ColorData cd = new ColorData();
     _colorSlider.setDefaultAttributes(cd);
