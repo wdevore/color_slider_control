@@ -2,13 +2,13 @@ part of color_slider_control;
 
 class ColorValue {
   /** Red color component. Value ranges from [0..255] */
-  int r;
+  int r = 0;
 
   /** Green color component. Value ranges from [0..255] */
-  int g;
+  int g = 0;
 
   /** Blue color component. Value ranges from [0..255] */
-  int b;
+  int b = 0;
 
   /**
    * Parses the color value with the following format:
