@@ -55,9 +55,9 @@ class ColorData {
       
       // Flip darklocation because we want the "left" end to be brighter.
       double dark = darkness.r / 255.0;
-      r = (r * (1.0 - dark)).toInt();
-      g = (g * (1.0 - dark)).toInt();
-      b = (b * (1.0 - dark)).toInt();
+      r = (r * (dark)).toInt();
+      g = (g * (dark)).toInt();
+      b = (b * (dark)).toInt();
       
       cv.set(r, g, b);
     }
