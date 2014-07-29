@@ -160,7 +160,11 @@ abstract class BaseSlider {
   void buildGradient([List<ColorValue> colors = null]);
   
   double getLocation(int position) {
-    _currentLocation = (position - xMin) / (xMax - xMin);
+    int width = xMax - xMin;
+    if (width > 0)
+      _currentLocation = (position - xMin) / width;
+    else
+      _currentLocation = 0.0;
     return _currentLocation;
   }
 
