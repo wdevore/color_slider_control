@@ -72,6 +72,9 @@ class ColorSlider extends BaseSlider {
   
   ColorData selectedMarker(HtmlElement target) {
     selectedStop = markers.firstWhere((ColorData cd) => cd.icon == target, orElse: () => null);
+    if (selectedStop != null) {
+      title = "loc: ${selectedStop.colorLocation}";
+    }
     return selectedStop;
   }
   
